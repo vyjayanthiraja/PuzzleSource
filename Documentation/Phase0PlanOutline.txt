@@ -1,0 +1,24 @@
+Phase 0 UI goal definition
+
+Overview
+1. Open App, press Play
+2. First puzzle + tutorial, or if a save exists where you left off
+3. Each puzzle has 3 hints, pressing the hint button shows a separate hint dialog. After the 3 hints have been shown, the hint button becomes a skip puzzle button
+4. Keep solving puzzles until we run out
+5. User starts out with 3 hints, each solved puzzle provides an additional hint
+6. When you quit the game or pause the game in any way, save the current puzzle, the hints left, and how many hints have been shown for the puzzle
+
+Open questions:
+How easy is touch screen to add?
+Can we store the puzzles locally?
+Can we easily have the puzzle description text be a separate object from the puzzle description image?
+
+Puzzle definition (what each puzzle will have):
+1. Title
+2. Description image (currently this will have the puzzle text as well)
+3. Type
+  a. Multiple choice - 2 to 4 possible choices each with text or an image (for now this will 
+     be simplified by only using images)
+  b. Text input - text box that when pressed accepts an input
+4. Correct answer to the puzzle
+5. 3 hints
