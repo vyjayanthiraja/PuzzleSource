@@ -94,7 +94,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="LocalizedStrings.cs" />
-    <Compile Include="MainPage.xaml.cs">
+    <Compile Include="View\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -103,13 +103,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="View\PuzzlePage.xaml.cs">
+      <DependentUpon>PuzzlePage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
-    <Page Include="MainPage.xaml">
+    <Page Include="View\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PuzzlePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -121,6 +128,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\175_175_Puzzle4_Solution_0.png" />
+    <Content Include="Assets\175_175_Puzzle4_Solution_1.png" />
+    <Content Include="Assets\175_175_Puzzle4_Solution_2.png" />
+    <Content Include="Assets\175_175_Puzzle4_Solution_3.png" />
+    <Content Include="Assets\480_350_Puzzle1_Solution_Apple_InputText.png" />
+    <Content Include="Assets\480_350_Puzzle2_Solution_Cricket_InputText.png" />
+    <Content Include="Assets\480_350_Puzzle3_Solution_Horseshoe_InputText.png" />
+    <Content Include="Assets\480_350_Puzzle4_Solution_2_MCQ.png" />
     <Content Include="Assets\AlignmentGrid.png" />
     <Content Include="Assets\ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

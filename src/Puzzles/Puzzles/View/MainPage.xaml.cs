@@ -9,7 +9,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Puzzles.Resources;
 
-namespace Puzzles
+namespace Puzzles.View
 {
     public partial class MainPage : PhoneApplicationPage
     {
@@ -20,6 +20,11 @@ namespace Puzzles
 
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/View/PuzzlePage.xaml", UriKind.Relative));
         }
 
         // Sample code for building a localized ApplicationBar
