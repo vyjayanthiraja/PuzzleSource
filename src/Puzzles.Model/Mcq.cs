@@ -9,10 +9,12 @@ namespace Puzzles.Model
     using System.ComponentModel;
     using System.Data.Linq.Mapping;
 
+    [Table]
     public class Mcq : Puzzle
     {
         private int answerIndex;
 
+        [Column]
         public int AnswerIndex
         {
             get
