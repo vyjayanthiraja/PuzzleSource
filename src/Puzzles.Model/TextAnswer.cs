@@ -9,12 +9,11 @@ namespace Puzzles.Model
     using System.ComponentModel;
     using System.Data.Linq.Mapping;
 
-    [Table]
     public class TextAnswer : Puzzle
     {
         private string answer;
 
-        [Column]
+        [Column(CanBeNull = true)]
         public string Answer
         {
             get

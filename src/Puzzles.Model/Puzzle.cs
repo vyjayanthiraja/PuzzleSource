@@ -8,6 +8,8 @@ namespace Puzzles.Model
     using System.Data.Linq.Mapping;
 
     [Table]
+    [InheritanceMapping(Code = "M", Type = typeof(Mcq))]
+    [InheritanceMapping(Code = "T", Type = typeof(TextAnswer), IsDefault = true)]
     public abstract class Puzzle : INotifyPropertyChanged, INotifyPropertyChanging
     {
         private int puzzleId;
