@@ -93,7 +93,14 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Data\Answer.cs" />
+    <Compile Include="Data\IntAnswer.cs" />
+    <Compile Include="Data\StringAnswer.cs" />
+    <Compile Include="IsolatedStorageSettingsExtensions.cs" />
     <Compile Include="LocalizedStrings.cs" />
+    <Compile Include="ViewModel\McqViewModel.cs" />
+    <Compile Include="ViewModel\PuzzleViewModel.cs" />
+    <Compile Include="ViewModel\TextAnswerViewModel.cs" />
     <Compile Include="View\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -162,7 +169,12 @@
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\Puzzles.Model\Puzzles.Model.csproj">
+      <Project>{96C47AC4-4CA2-4DD7-A783-51EF420ABDBC}</Project>
+      <Name>Puzzles.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

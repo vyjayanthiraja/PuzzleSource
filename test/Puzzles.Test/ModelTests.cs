@@ -14,7 +14,7 @@ namespace Puzzles.Test
     [TestClass]
     public class ModelTests
     {
-        private const string puzzleDBConnectionString = "Data Source=isostore:/TestAdminDB.sdf";
+        private const string puzzleDBConnectionString = "Data Source=isostore:/TestDB.sdf";
         private PuzzleDataContext db;
 
         [TestInitialize]

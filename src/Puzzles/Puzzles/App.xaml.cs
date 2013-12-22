@@ -1,22 +1,51 @@
-﻿using System;
-using System.Diagnostics;
-using System.Resources;
-using System.Windows;
-using System.Windows.Markup;
-using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
-using Puzzles.Resources;
+﻿/// <summary>
+/// Main entry point for application
+/// </summary>
 
 namespace Puzzles
 {
+    using System;
+    using System.Diagnostics;
+    using System.Globalization;
+    using System.IO.IsolatedStorage;
+    using System.Linq;
+    using System.Resources;
+    using System.Windows;
+    using System.Windows.Markup;
+    using System.Windows.Navigation;
+    using Microsoft.Phone.Controls;
+    using Microsoft.Phone.Shell;
+
+    using Puzzles.Model;
+    using Puzzles.Resources;
+    using Puzzles.ViewModel;
+
     public partial class App : Application
     {
+        private static int currentPuzzle = int.MinValue;
+        private static readonly IsolatedStorageSettings appSettings = IsolatedStorageSettings.ApplicationSettings;
+
         /// <summary>
         /// Provides easy access to the root frame of the Phone Application.
         /// </summary>
         /// <returns>The root frame of the Phone Application.</returns>
         public static PhoneApplicationFrame RootFrame { get; private set; }
+
+        public static int CurrentPuzzle
+        {
+            get { return currentPuzzle; }
+            set { currentPuzzle = value; }
+        }
+
+        public static string DbConnectionString
+        {
+            get { return "Data Source=isostore:/Puzzles.sdf"; }
+        }
+
+        public static IsolatedStorageSettings AppSettings
+        {
+            get { return appSettings; }
+        }
 
         /// <summary>
         /// Constructor for the Application object.
@@ -61,6 +90,8 @@ namespace Puzzles
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
+            this.CheckDatabase();
+            this.LoadCurrentPuzzleId();
         }
 
         // Code to execute when the application is activated (brought to foreground)
@@ -79,6 +110,7 @@ namespace Puzzles
         // This code will not execute when the application is deactivated
         private void Application_Closing(object sender, ClosingEventArgs e)
         {
+            this.SaveCurrentPuzzleId();
         }
 
         // Code to execute if a navigation fails
@@ -218,6 +250,42 @@ namespace Puzzles
 
                 throw;
             }
+        }
+
+        private void CheckDatabase()
+        {
+            PuzzleDataContext puzzleDb = new PuzzleDataContext(DbConnectionString);
+            if(puzzleDb.DatabaseExists() == false)
+            {
+                // TODO : Enable this exception later when we start testing the app with actual puzzles in DB
+                // TODO : Add exception handling for entire application
+
+                //throw new InvalidOperationException(string.Format(
+                //    CultureInfo.CurrentCulture,
+                //    "Failed to locate database with given database string : {0}",
+                //    DbConnectionString));
+            }
+        }
+
+        private void LoadCurrentPuzzleId()
+        {
+            currentPuzzle = appSettings.GetCurrentPuzzleId();
+            if(currentPuzzle == int.MinValue)
+            {
+                using(PuzzleDataContext puzzleDb = new PuzzleDataContext(DbConnectionString))
+                {
+                    Puzzle puzzle = puzzleDb.GetFirstPuzzle();
+                    if(puzzle != null)
+                    {
+                        currentPuzzle = puzzle.PuzzleId;
+                    }
+                }
+            }
+        }
+
+        private void SaveCurrentPuzzleId()
+        {
+            appSettings.UpdateCurrentPuzzleId(currentPuzzle);
         }
     }
 }

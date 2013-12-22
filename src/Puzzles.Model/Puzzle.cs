@@ -4,7 +4,9 @@
 
 namespace Puzzles.Model
 {
+    using System;
     using System.ComponentModel;
+    using System.Data.Linq;
     using System.Data.Linq.Mapping;
 
     [Table]
@@ -15,6 +17,9 @@ namespace Puzzles.Model
         private int puzzleId;
         private string title;
         private string imageLocation;
+
+        [Column(IsVersion = true)]
+        private Binary version;
 
         [Column(IsPrimaryKey = true, IsDbGenerated = true, DbType = "INT NOT NULL Identity", CanBeNull = false, AutoSync = AutoSync.OnInsert)]
         public int PuzzleId
