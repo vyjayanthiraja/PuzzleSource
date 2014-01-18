@@ -92,6 +92,7 @@ namespace Puzzles
         {
             this.CheckDatabase();
             this.LoadCurrentPuzzleId();
+            PuzzlePageFactory.Init();
         }
 
         // Code to execute when the application is activated (brought to foreground)
@@ -257,13 +258,12 @@ namespace Puzzles
             PuzzleDataContext puzzleDb = new PuzzleDataContext(DbConnectionString);
             if(puzzleDb.DatabaseExists() == false)
             {
-                // TODO : Enable this exception later when we start testing the app with actual puzzles in DB
-                // TODO : Add exception handling for entire application
+                 // TODO : Add exception handling for entire application
 
-                //throw new InvalidOperationException(string.Format(
-                //    CultureInfo.CurrentCulture,
-                //    "Failed to locate database with given database string : {0}",
-                //    DbConnectionString));
+                throw new InvalidOperationException(string.Format(
+                    CultureInfo.CurrentCulture,
+                    "Failed to locate database with given database string : {0}",
+                    DbConnectionString));
             }
         }
 

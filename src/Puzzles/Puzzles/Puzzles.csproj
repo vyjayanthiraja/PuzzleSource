@@ -98,6 +98,7 @@
     <Compile Include="Data\StringAnswer.cs" />
     <Compile Include="IsolatedStorageSettingsExtensions.cs" />
     <Compile Include="LocalizedStrings.cs" />
+    <Compile Include="PuzzlePageFactory.cs" />
     <Compile Include="ViewModel\McqViewModel.cs" />
     <Compile Include="ViewModel\PuzzleViewModel.cs" />
     <Compile Include="ViewModel\TextAnswerViewModel.cs" />
