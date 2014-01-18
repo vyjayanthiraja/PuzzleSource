@@ -39,7 +39,7 @@ namespace Puzzles
 
         public static string DbConnectionString
         {
-            get { return "Data Source=isostore:/Puzzles.sdf"; }
+            get { return "Data Source=appdata:/Puzzles.sdf"; }
         }
 
         public static IsolatedStorageSettings AppSettings
