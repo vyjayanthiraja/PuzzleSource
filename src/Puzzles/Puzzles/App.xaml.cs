@@ -22,7 +22,6 @@ namespace Puzzles
 
     public partial class App : Application
     {
-        private static int currentPuzzle = int.MinValue;
         private static readonly IsolatedStorageSettings appSettings = IsolatedStorageSettings.ApplicationSettings;
 
         /// <summary>
@@ -31,17 +30,22 @@ namespace Puzzles
         /// <returns>The root frame of the Phone Application.</returns>
         public static PhoneApplicationFrame RootFrame { get; private set; }
 
-        public static int CurrentPuzzle
-        {
-            get { return currentPuzzle; }
-            set { currentPuzzle = value; }
-        }
+        /// <summary>
+        /// Gets or sets the current Puzzle object
+        /// </summary>
+        public static Puzzle CurrentPuzzle { get; set; }
 
+        /// <summary>
+        /// Gets the puzzle database connection string
+        /// </summary>
         public static string DbConnectionString
         {
             get { return "Data Source=appdata:/Puzzles.sdf"; }
         }
 
+        /// <summary>
+        /// Gets or sets the isolated storage settings
+        /// </summary>
         public static IsolatedStorageSettings AppSettings
         {
             get { return appSettings; }
@@ -91,7 +95,7 @@ namespace Puzzles
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
             this.CheckDatabase();
-            this.LoadCurrentPuzzleId();
+            this.LoadCurrentPuzzle();
             PuzzlePageFactory.Init();
         }
 
@@ -253,6 +257,9 @@ namespace Puzzles
             }
         }
 
+        /// <summary>
+        /// Checks that the puzzle database exists, throws an exception if it doesn't
+        /// </summary>
         private void CheckDatabase()
         {
             PuzzleDataContext puzzleDb = new PuzzleDataContext(DbConnectionString);
@@ -267,25 +274,31 @@ namespace Puzzles
             }
         }
 
-        private void LoadCurrentPuzzleId()
+        /// <summary>
+        /// Loads the current puzzle from the database, or the first puzzle if no current puzzle exists
+        /// </summary>
+        private void LoadCurrentPuzzle()
         {
-            currentPuzzle = appSettings.GetCurrentPuzzleId();
-            if(currentPuzzle == int.MinValue)
+            int currentPuzzleId = appSettings.GetCurrentPuzzleId();
+            using(PuzzleDataContext puzzleDb = new PuzzleDataContext(DbConnectionString))
             {
-                using(PuzzleDataContext puzzleDb = new PuzzleDataContext(DbConnectionString))
+                if (currentPuzzleId == int.MinValue)
                 {
-                    Puzzle puzzle = puzzleDb.GetFirstPuzzle();
-                    if(puzzle != null)
-                    {
-                        currentPuzzle = puzzle.PuzzleId;
-                    }
+                    CurrentPuzzle = puzzleDb.GetFirstPuzzle();
+                }
+                else
+                {
+                    CurrentPuzzle = puzzleDb.GetPuzzleById(currentPuzzleId);
                 }
             }
         }
 
+        /// <summary>
+        /// Saves the ID of the current puzzle to isolated storage
+        /// </summary>
         private void SaveCurrentPuzzleId()
         {
-            appSettings.UpdateCurrentPuzzleId(currentPuzzle);
+            appSettings.UpdateCurrentPuzzleId(CurrentPuzzle.PuzzleId);
         }
     }
 }

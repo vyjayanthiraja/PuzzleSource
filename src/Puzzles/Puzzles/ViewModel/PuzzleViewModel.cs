@@ -19,14 +19,14 @@ namespace Puzzles.ViewModel
         {
             using(PuzzleDataContext puzzleDb = new PuzzleDataContext(App.DbConnectionString))
             {
-                Puzzle nextPuzzle = puzzleDb.GetNextPuzzle(App.CurrentPuzzle);
+                Puzzle nextPuzzle = puzzleDb.GetNextPuzzle(App.CurrentPuzzle.PuzzleId);
                 if(nextPuzzle == null)
                 {
-                    App.CurrentPuzzle = int.MinValue;
+                    App.CurrentPuzzle = null;
                 }
                 else
                 {
-                    App.CurrentPuzzle = nextPuzzle.PuzzleId;
+                    App.CurrentPuzzle = nextPuzzle;
                 }
             }
         }
