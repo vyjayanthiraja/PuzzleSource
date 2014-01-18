@@ -9,6 +9,8 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Puzzles.Resources;
 
+using Puzzles.Model;
+
 namespace Puzzles.View
 {
     public partial class MainPage : PhoneApplicationPage
@@ -24,7 +26,8 @@ namespace Puzzles.View
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/View/PuzzlePage.xaml", UriKind.Relative));
+            Puzzle currentPuzzle = PuzzleDataContextExtensions.GetPuzzleById(new PuzzleDataContext(App.DbConnectionString), App.CurrentPuzzle);
+            NavigationService.Navigate(new Uri(PuzzlePageFactory.GetPuzzlePage(currentPuzzle), UriKind.Relative));
         }
 
         // Sample code for building a localized ApplicationBar

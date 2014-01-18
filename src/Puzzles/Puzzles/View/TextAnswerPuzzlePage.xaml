@@ -1,5 +1,5 @@
 ﻿<phone:PhoneApplicationPage
-    x:Class="Puzzles.View.PuzzlePage"
+    x:Class="Puzzles.View.TextAnswerPuzzlePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
@@ -24,8 +24,7 @@
         
         <Image Name="PuzzleImage" Grid.Row="0" />
 
-        <Grid Name="AnswerField" Grid.Row="1"  Tap="answerField_Tap">
-        </Grid>
+        <TextBox Name="AnswerBox" Grid.Row="1" HorizontalAlignment="Left" Height="80" Margin="90,135,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="300"/>
 
 
         <Grid Name="PuzzleButtonsField" Grid.Row="2">

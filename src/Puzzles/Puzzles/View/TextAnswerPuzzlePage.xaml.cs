@@ -10,30 +10,16 @@ using Microsoft.Phone.Shell;
 
 namespace Puzzles.View
 {
-    public enum PuzzleType { MCQ,InputText};
-    public class Puzzle
+    public partial class TextAnswerPuzzlePage : PhoneApplicationPage
     {
-        public bool checkSolution(String sol)
-        {
-            return sol.ToLowerInvariant() == solution.ToLowerInvariant();  
-        }
-        public PuzzleType type = PuzzleType.InputText;
-        public Uri image = new Uri("/Assets/480_350_Puzzle1_Solution_Apple_InputText.png", UriKind.Relative);
-        public String solution = "apple";
-        public IList<Uri> solutionImageList = null;
-    }
-    
-    public partial class PuzzlePage : PhoneApplicationPage
-    {
-        public IList<Puzzle> puzzleList;
-        public PuzzlePage()
+        public TextAnswerPuzzlePage()
         {
             InitializeComponent();
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            Puzzle puzzle = new Puzzle();
+            //Puzzle puzzle = new Puzzle();
             //MCQ stuff:
             //            <Grid.RowDefinitions>
             //    <RowDefinition Height="*"/>
@@ -44,14 +30,14 @@ namespace Puzzles.View
             //    <ColumnDefinition Width="*"/>
             //</Grid.ColumnDefinitions>
 
-            if (puzzle.type == PuzzleType.InputText)
-            {
-                //InputText stuff:
-                //<TextBox HorizontalAlignment="Left" Height="97" Margin="40,50,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="403"/>
-                TextBox answerBox = new TextBox();
+            //if (puzzle.type == PuzzleType.InputText)
+            //{
+            //    //InputText stuff:
+            //    //<TextBox HorizontalAlignment="Left" Height="97" Margin="40,50,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="403"/>
+            //    TextBox answerBox = new TextBox();
                 
-            }
-            PuzzleImage.Source = new System.Windows.Media.Imaging.BitmapImage(puzzle.image);
+            //}
+            //PuzzleImage.Source = new System.Windows.Media.Imaging.BitmapImage(puzzle.image);
         }
 
         private void SubmitButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)

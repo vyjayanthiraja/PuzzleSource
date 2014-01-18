@@ -11,20 +11,23 @@ namespace Puzzles.ViewModel
 
     internal class TextAnswerViewModel : PuzzleViewModel
     {
-        private TextAnswer textAnswer;
-
         public TextAnswerViewModel()
         {
             using(PuzzleDataContext puzzleDb = new PuzzleDataContext(App.DbConnectionString))
             {
-                this.textAnswer = (TextAnswer)puzzleDb.GetPuzzleById(App.CurrentPuzzle);
+                this.TextAnswer = (TextAnswer)puzzleDb.GetPuzzleById(App.CurrentPuzzle);
             }
         }
+
+        /// <summary>
+        /// Gets or sets the TextAnswer puzzle
+        /// </summary>
+        public TextAnswer TextAnswer { get; private set; }
 
         protected override bool IsAnswerCorrect(Answer answer)
         {
             StringAnswer stringAnswer = (StringAnswer)answer;
-            return (string.Compare(stringAnswer.Value, textAnswer.Answer, CultureInfo.CurrentCulture, CompareOptions.OrdinalIgnoreCase) == 0);
+            return (string.Compare(stringAnswer.Value, TextAnswer.Answer, CultureInfo.CurrentCulture, CompareOptions.OrdinalIgnoreCase) == 0);
         }
     }
 }

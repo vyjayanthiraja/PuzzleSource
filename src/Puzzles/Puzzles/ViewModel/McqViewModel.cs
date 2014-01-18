@@ -9,20 +9,23 @@ namespace Puzzles.ViewModel
 
     internal class McqViewModel : PuzzleViewModel
     {
-        private Mcq mcq;
-
         public McqViewModel()
         {
             using(PuzzleDataContext puzzleDb = new PuzzleDataContext(App.DbConnectionString))
             {
-                this.mcq = (Mcq)puzzleDb.GetPuzzleById(App.CurrentPuzzle);
+                this.Mcq = (Mcq)puzzleDb.GetPuzzleById(App.CurrentPuzzle);
             }
         }
+
+        /// <summary>
+        /// Gets or sets the Mcq puzzle
+        /// </summary>
+        public Mcq Mcq { get; private set; }
 
         protected override bool IsAnswerCorrect(Answer answer)
         {
             IntAnswer intAnswer = (IntAnswer)answer;
-            return intAnswer.Value == mcq.AnswerIndex;
+            return intAnswer.Value == Mcq.AnswerIndex;
         }
     }
 }

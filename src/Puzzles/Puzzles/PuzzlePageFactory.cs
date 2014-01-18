@@ -19,8 +19,8 @@ namespace Puzzles
         public static void Init()
         {
             typePageMap = new Dictionary<Type, string>();
-            typePageMap.Add(typeof(Mcq), "/View/McqPage.xaml");
-            typePageMap.Add(typeof(TextAnswer), "/View/TextAnswerPage.xaml");
+            typePageMap.Add(typeof(Mcq), "/View/McqPuzzlePage.xaml");
+            typePageMap.Add(typeof(TextAnswer), "/View/TextAnswerPuzzlePage.xaml");
         }
 
         public static string GetPuzzlePage(Puzzle puzzle)
