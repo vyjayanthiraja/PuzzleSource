@@ -102,6 +102,9 @@
     <Compile Include="ViewModel\McqViewModel.cs" />
     <Compile Include="ViewModel\PuzzleViewModel.cs" />
     <Compile Include="ViewModel\TextAnswerViewModel.cs" />
+    <Compile Include="View\CorrectAnswerPage.xaml.cs">
+      <DependentUpon>CorrectAnswerPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -111,8 +114,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="View\PuzzlePage.xaml.cs">
-      <DependentUpon>PuzzlePage.xaml</DependentUpon>
+    <Compile Include="View\MCQPuzzlePage.xaml.cs">
+      <DependentUpon>MCQPuzzlePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TextAnswerPuzzlePage.xaml.cs">
+      <DependentUpon>TextAnswerPuzzlePage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -120,13 +126,21 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="View\CorrectAnswerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\PuzzlePage.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="View\MCQPuzzlePage.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\TextAnswerPuzzlePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
