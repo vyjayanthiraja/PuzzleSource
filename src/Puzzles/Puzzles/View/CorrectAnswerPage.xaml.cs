@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using System.Windows.Input;
 
 namespace Puzzles.View
 {
@@ -15,6 +16,11 @@ namespace Puzzles.View
         public CorrectAnswerPage()
         {
             InitializeComponent();
+        }
+
+        private void NextPuzzleButton_Tap(object sender, GestureEventArgs e)
+        {
+            NavigationService.Navigate(new Uri(PuzzlePageFactory.GetPuzzlePage(App.CurrentPuzzle), UriKind.Relative));
         }
     }
 }

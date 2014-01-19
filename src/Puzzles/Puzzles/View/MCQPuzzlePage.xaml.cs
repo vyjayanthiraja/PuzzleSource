@@ -14,15 +14,18 @@
     using Puzzles.Model;
     using Puzzles.ViewModel;
     using System.Windows.Input;
+    using Puzzles.Data;
 
     public partial class MCQPuzzlePage : PhoneApplicationPage
     {
         McqViewModel mcqViewModel;
+        int currentChoice;
 
         public MCQPuzzlePage()
         {
             InitializeComponent();
             this.mcqViewModel = new McqViewModel();
+            this.currentChoice = -1;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -39,17 +42,44 @@
 
         private void SubmitButton_Tap(object sender, GestureEventArgs e)
         {
+            if (mcqViewModel.ValidateAnswer(new IntAnswer("MCQAnswer", currentChoice)))
+            {
+                NavigationService.Navigate(new Uri("/View/CorrectAnswerPage.xaml", UriKind.Relative));
+            }
 
-        }
-
-        private void HintButton_Tap(object sender, GestureEventArgs e)
-        {
-            
         }
 
         private void Answer_Tap(object sender, GestureEventArgs e)
         {
+            Image clickedImage = sender as Image;
+            if (clickedImage == null)
+            {
+                return;
+            }
 
+            switch (clickedImage.Name)
+            {
+                case "Answer0":
+                    currentChoice = 0;
+                    break;
+                case "Answer1":
+                    currentChoice = 1;
+                    break;
+                case "Answer2":
+                    currentChoice = 2;
+                    break;
+                case "Answer3":
+                    currentChoice = 3;
+                    break;
+                default:
+                    currentChoice = -1;
+                    break;
+            }
+
+            if (currentChoice >= mcqViewModel.Mcq.ChoicesList.Count)
+            {
+                currentChoice = -1;
+            }
         }
     }
 }

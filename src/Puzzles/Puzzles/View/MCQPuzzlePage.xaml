@@ -24,7 +24,7 @@
         
         <Image Name="PuzzleImage" Grid.Row="0" />
 
-        <Grid Grid.Row="1" Tap="Answer_Tap" >
+        <Grid Name="answerGrid" Grid.Row="1" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
@@ -33,10 +33,11 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Image Name="Answer0" Grid.Row="0" Grid.Column="0" />
-            <Image Name="Answer1" Grid.Row="0" Grid.Column="1" />
-            <Image Name="Answer2" Grid.Row="1" Grid.Column="0" />
-            <Image Name="Answer3" Grid.Row="1" Grid.Column="1" />
+            
+            <Image Name="Answer0" Grid.Row="0" Grid.Column="0" Tap="Answer_Tap" />
+            <Image Name="Answer1" Grid.Row="0" Grid.Column="1" Tap="Answer_Tap" />
+            <Image Name="Answer2" Grid.Row="1" Grid.Column="0" Tap="Answer_Tap" />
+            <Image Name="Answer3" Grid.Row="1" Grid.Column="1" Tap="Answer_Tap" />
         </Grid>
 
         <Grid Name="PuzzleButtonsField" Grid.Row="2">
@@ -45,7 +46,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button Name="SubmitButton" Content="SUBMIT" Grid.Column="0" HorizontalAlignment="Left" Height="80" Margin="0,10,0,0" VerticalAlignment="Top" Width="240" Tap="SubmitButton_Tap"/>
-            <Button Name="HintButton" Content="HINT" Grid.Column="1" HorizontalAlignment="Left" Height="80" Margin="0,10,0,0" VerticalAlignment="Top" Width="240" Tap="HintButton_Tap"/>
+            <Button Name="HintButton" Content="HINT" Grid.Column="1" HorizontalAlignment="Left" Height="80" Margin="0,10,0,0" VerticalAlignment="Top" Width="240" />
         </Grid>
     </Grid>
 

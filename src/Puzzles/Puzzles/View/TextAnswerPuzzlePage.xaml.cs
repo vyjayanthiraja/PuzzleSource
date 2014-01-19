@@ -7,52 +7,35 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using System.Windows.Media.Imaging;
+
+using Puzzles.Model;
+using Puzzles.ViewModel;
+using System.Windows.Input;
+using Puzzles.Data;
 
 namespace Puzzles.View
 {
     public partial class TextAnswerPuzzlePage : PhoneApplicationPage
     {
+        TextAnswerViewModel textAnswerViewModel;
         public TextAnswerPuzzlePage()
         {
             InitializeComponent();
+            this.textAnswerViewModel = new TextAnswerViewModel();
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            //Puzzle puzzle = new Puzzle();
-            //MCQ stuff:
-            //            <Grid.RowDefinitions>
-            //    <RowDefinition Height="*"/>
-            //    <RowDefinition Height="*"/>
-            //</Grid.RowDefinitions>
-            //<Grid.ColumnDefinitions>
-            //    <ColumnDefinition Width="*"/>
-            //    <ColumnDefinition Width="*"/>
-            //</Grid.ColumnDefinitions>
-
-            //if (puzzle.type == PuzzleType.InputText)
-            //{
-            //    //InputText stuff:
-            //    //<TextBox HorizontalAlignment="Left" Height="97" Margin="40,50,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="403"/>
-            //    TextBox answerBox = new TextBox();
-                
-            //}
-            //PuzzleImage.Source = new System.Windows.Media.Imaging.BitmapImage(puzzle.image);
+            PuzzleImage.Source = new BitmapImage(new Uri(textAnswerViewModel.TextAnswer.ImageLocation, UriKind.Relative));
         }
 
         private void SubmitButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            PuzzleImage.Source = new System.Windows.Media.Imaging.BitmapImage(new Uri("/Assets/480_350_Puzzle2_Solution_Cricket_InputText.png", UriKind.Relative));
-        }
-
-        private void HintButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
-        {
-            PuzzleImage.Source = new System.Windows.Media.Imaging.BitmapImage(new Uri("/Assets/480_350_Puzzle1_Solution_Apple_InputText.png", UriKind.Relative));
-        }
-
-        private void answerField_Tap(object sender, System.Windows.Input.GestureEventArgs e)
-        {
-            //NavigationService.GoBack();
+            if (textAnswerViewModel.ValidateAnswer(new StringAnswer("MCQAnswer", AnswerBox.Text)))
+            {
+                NavigationService.Navigate(new Uri("/View/CorrectAnswerPage.xaml", UriKind.Relative));
+            }
         }
     }
 }
