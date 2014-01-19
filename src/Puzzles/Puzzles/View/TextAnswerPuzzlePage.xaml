@@ -24,7 +24,7 @@
         
         <Image Name="PuzzleImage" Grid.Row="0" />
 
-        <TextBox Name="AnswerBox" Grid.Row="1" HorizontalAlignment="Left" Height="80" Margin="90,135,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="300"/>
+        <TextBox Name="AnswerBox" Grid.Row="1" HorizontalAlignment="Left" Height="80" Margin="90,135,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="300" KeyDown="TextBoxInput"/>
 
 
         <Grid Name="PuzzleButtonsField" Grid.Row="2">

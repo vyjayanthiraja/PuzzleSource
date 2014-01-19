@@ -37,5 +37,13 @@ namespace Puzzles.View
                 NavigationService.Navigate(new Uri("/View/CorrectAnswerPage.xaml", UriKind.Relative));
             }
         }
+
+        private void TextBoxInput(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                this.Focus();
+            }
+        }
     }
 }
