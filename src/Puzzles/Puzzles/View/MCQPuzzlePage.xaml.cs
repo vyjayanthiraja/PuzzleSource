@@ -10,6 +10,7 @@
     using Microsoft.Phone.Controls;
     using Microsoft.Phone.Shell;
     using System.Windows.Media.Imaging;
+    using System.Windows.Media;
 
     using Puzzles.Model;
     using Puzzles.ViewModel;
@@ -80,6 +81,28 @@
             {
                 currentChoice = -1;
             }
+
+            Answer0Grid.Background = new SolidColorBrush(Colors.Transparent);
+            Answer1Grid.Background = new SolidColorBrush(Colors.Transparent);
+            Answer2Grid.Background = new SolidColorBrush(Colors.Transparent);
+            Answer3Grid.Background = new SolidColorBrush(Colors.Transparent);
+
+            switch (currentChoice)
+            {
+                case 0:
+                    Answer0Grid.Background = new SolidColorBrush(Colors.Green);
+                    break;
+                case 1:
+                    Answer1Grid.Background = new SolidColorBrush(Colors.Green);
+                    break;
+                case 2:
+                    Answer2Grid.Background = new SolidColorBrush(Colors.Green);
+                    break;
+                case 3:
+                    Answer3Grid.Background = new SolidColorBrush(Colors.Green);
+                    break;
+            }
+            
         }
     }
 }

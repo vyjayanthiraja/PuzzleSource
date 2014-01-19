@@ -33,7 +33,10 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            
+            <Grid Name="Answer0Grid" Grid.Row="0" Grid.Column="0" Background="Transparent"></Grid>
+            <Grid Name="Answer1Grid" Grid.Row="0" Grid.Column="1" Background="Transparent"></Grid>
+            <Grid Name="Answer2Grid" Grid.Row="1" Grid.Column="0" Background="Transparent"></Grid>
+            <Grid Name="Answer3Grid" Grid.Row="1" Grid.Column="1" Background="Transparent"></Grid>
             <Image Name="Answer0" Grid.Row="0" Grid.Column="0" Tap="Answer_Tap" />
             <Image Name="Answer1" Grid.Row="0" Grid.Column="1" Tap="Answer_Tap" />
             <Image Name="Answer2" Grid.Row="1" Grid.Column="0" Tap="Answer_Tap" />
