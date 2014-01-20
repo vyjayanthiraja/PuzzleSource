@@ -15,6 +15,7 @@ namespace Puzzles
     internal static class PuzzlePageFactory
     {
         private static Dictionary<Type, string> typePageMap;
+        private static string defaultLandingPage = "/View/NoPuzzlesLeftPage.xaml";
 
         public static void Init()
         {
@@ -25,6 +26,11 @@ namespace Puzzles
 
         public static string GetPuzzlePage(Puzzle puzzle)
         {
+            if (puzzle == null)
+            {
+                return defaultLandingPage;
+            }
+
             if(typePageMap.ContainsKey(puzzle.GetType()))
             {
                 return typePageMap[puzzle.GetType()];

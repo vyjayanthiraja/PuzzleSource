@@ -117,6 +117,9 @@
     <Compile Include="View\MCQPuzzlePage.xaml.cs">
       <DependentUpon>MCQPuzzlePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\NoPuzzlesLeftPage.xaml.cs">
+      <DependentUpon>NoPuzzlesLeftPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\TextAnswerPuzzlePage.xaml.cs">
       <DependentUpon>TextAnswerPuzzlePage.xaml</DependentUpon>
     </Compile>
@@ -137,6 +140,10 @@
     <Page Include="View\MCQPuzzlePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\NoPuzzlesLeftPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\TextAnswerPuzzlePage.xaml">
       <Generator>MSBuild:Compile</Generator>
